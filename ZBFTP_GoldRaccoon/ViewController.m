@@ -19,17 +19,16 @@
 {
     [super viewDidLoad];
     
-    if (self.hostTextField.text.length > 0 && self.userTextField.text.length > 0 && self.pswtTextField.text.length > 0)
-    {
-        [ZBFtpTools ZBFtp_setupInitWithHost:self.hostTextField.text
-                                       user:self.userTextField.text
-                                        psw:self.pswtTextField.text];
-    }
- 
 }
-
+- (void)sFtpInit
+{
+    [ZBFtpTools ZBFtp_setupInitWithHost:self.hostTextField.text
+                                   user:self.userTextField.text
+                                    psw:self.pswtTextField.text];
+}
 - (IBAction)askListBtnClick:(id)sender
 {
+    [self sFtpInit];
     [ZBFtpTools ZBFtp_AskListWithDirectorAtPath:@"/"
                                        backList:^(NSArray *listArray)
      {
@@ -46,6 +45,7 @@
 }
 - (IBAction)uploadFileBtnClick:(id)sender
 {
+    [self sFtpInit];
     NSString *localPathStr = [[NSBundle mainBundle] pathForResource:@"img1" ofType:@"png"];
     NSString *remotaPathStr = @"/中文文件名china.png";
     
@@ -66,6 +66,7 @@
 }
 - (IBAction)downloadBtnClick:(id)sender
 {
+    [self sFtpInit];
     NSString *localPathStr = [NSTemporaryDirectory() stringByAppendingString:@"中文文件名china.png"];
     NSLog(@"--localPathStr-->%@<-----",localPathStr);
     NSString *remotaPathStr = @"/中文文件名china.png";
@@ -87,6 +88,7 @@
 }
 - (IBAction)deleteFileBtnClick:(id)sender
 {
+    [self sFtpInit];
     NSString *deleteFilePathStr = @"/中文文件名china.png";
     [ZBFtpTools ZBFtp_DeleteFileAtPath:deleteFilePathStr
                         completeDelete:^
@@ -100,6 +102,7 @@
 }
 - (IBAction)createDirBtnClick:(id)sender
 {
+    [self sFtpInit];
     NSString *directoryPathStr = @"中文目录china/";
     [ZBFtpTools ZBFtp_CreateDirectoryAtPath:directoryPathStr
                     completeCreateDirectory:^
@@ -113,6 +116,7 @@
 }
 - (IBAction)deleteDirBtnClick:(id)sender
 {
+    [self sFtpInit];
     NSString *deleteDirPathStr = @"中文目录china/";
     [ZBFtpTools ZBFtp_DeleteFileAtPath:deleteDirPathStr
                         completeDelete:^
