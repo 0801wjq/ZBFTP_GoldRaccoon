@@ -1,6 +1,10 @@
-# ZBFTP_GoldRaccoon 1.01
+# ZBFTP_GoldRaccoon 1.03
 
-对https://github.com/albertodebortoli/GoldRaccoon的封装;
+对https://github.com/albertodebortoli/GoldRaccoon 的封装;
+
+
+/Users/xiaozhibin/Desktop/ZBFTP_GoldRaccoon/1.png
+
 
 增加:
 1.使用block;
